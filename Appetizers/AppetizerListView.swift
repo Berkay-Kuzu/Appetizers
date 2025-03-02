@@ -13,23 +13,23 @@ struct AppetizerListView: View {
     
     var body: some View {
         
-        if appetizerListViewModel.isLoading {
-            ProgressView()
-                .progressViewStyle(.circular)
-                .scaleEffect(1.5)
-        }
-        
-        NavigationView {
-            List(appetizerListViewModel.appetizers) { appetizer in
-                AppetizerListCell(appetizer: appetizer)
+        ZStack {
+            NavigationView {
+                List(appetizerListViewModel.appetizers) { appetizer in
+                    AppetizerListCell(appetizer: appetizer)
+                }
+                .navigationTitle("🍟 Appetizers")
             }
-            .navigationTitle("🍟 Appetizers")
+            .onAppear {
+                //  appetizerListViewModel.getAppetizers() can be written if viewModel init is not written
+                // here is initialized when the view is appear
+            }
+            if appetizerListViewModel.isLoading {
+                ProgressView()
+                    .progressViewStyle(.circular)
+                    .scaleEffect(1.5)
+            }
         }
-        .onAppear {
-//            appetizerListViewModel.getAppetizers()
-           // here is initialized when the view is appear
-        }
-        
         .alert(item: $appetizerListViewModel.alertItem) { alertItem in
             Alert(title: alertItem.title, message: alertItem.message, dismissButton: alertItem.dismissButton)
         }

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct AppetizerListCell: View {
     
@@ -13,8 +14,17 @@ struct AppetizerListCell: View {
     
     var body: some View {
         HStack {
-        Image("steak")
-                .resizable()
+            //            WebImage(url: URL(string: appetizer.imageURL)) { image in
+            //                  image.resizable()
+            //              } placeholder: {
+            //                  Rectangle().foregroundColor(.gray)
+            //              }
+            //              .transition(.fade(duration: 0.5))
+            //              .aspectRatio(contentMode: .fill)
+            //              .frame(width: 120, height: 90)
+            //              .cornerRadius(10)
+            
+            AppetizerRemoteImage(urlString: appetizer.imageURL)
                 .aspectRatio(contentMode: .fill)
                 .frame(width: 120, height: 90)
                 .cornerRadius(10)
