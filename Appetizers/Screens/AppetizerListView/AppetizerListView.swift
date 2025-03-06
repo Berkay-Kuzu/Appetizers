@@ -10,8 +10,6 @@ import SwiftUI
 struct AppetizerListView: View {
     
     @StateObject var appetizerListViewModel = AppetizerListViewViewModel()
-    @State var selectedAppetizer: Appetizer?
-    @State private var isShowingDetail = false
     
     var body: some View {
         
@@ -20,22 +18,22 @@ struct AppetizerListView: View {
                 List(appetizerListViewModel.appetizers) { appetizer in
                     AppetizerListCell(appetizer: appetizer)
                         .onTapGesture {
-                            self.selectedAppetizer = appetizer
-                            isShowingDetail = true
+                            self.appetizerListViewModel.selectedAppetizer = appetizer
+                            appetizerListViewModel.isShowingDetail = true
                         }
                 }
                 .navigationTitle("🍟 Appetizers")
-                .disabled(isShowingDetail)
+                .disabled(appetizerListViewModel.isShowingDetail)
             }
             .onAppear {
                 //  appetizerListViewModel.getAppetizers() can be written if viewModel init is not written
                 // here is initialized when the view is appear
             }
-            .blur(radius: isShowingDetail ? 20 : 0)
+            .blur(radius: appetizerListViewModel.isShowingDetail ? 20 : 0)
             
-            if isShowingDetail {
-                AppetizerDetailView(appetizer: self.selectedAppetizer ?? MockData.sampleAppetizer,
-                                    isShowingDetail: $isShowingDetail)
+            if appetizerListViewModel.isShowingDetail {
+                AppetizerDetailView(appetizer: self.appetizerListViewModel.selectedAppetizer ?? MockData.sampleAppetizer,
+                                    isShowingDetail: $appetizerListViewModel.isShowingDetail)
             }
             
             if appetizerListViewModel.isLoading {
