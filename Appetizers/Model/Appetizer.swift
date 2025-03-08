@@ -24,7 +24,32 @@ struct AppetizerResponse: Codable {
 
 struct MockData {
     
-    static let sampleAppetizer = Appetizer(id: 0001, name: "Test Appetizer", description: "This is the description of my appetizer. It is yummy", price: 9.99, imageURL: "", calories: 99, protein: 99, carbs: 99)
+    static let sampleAppetizer = Appetizer(id: 0001,
+                                           name: "Test Appetizer One",
+                                           description: "This is the description of my appetizer. It is yummy",
+                                           price: 9.99,
+                                           imageURL: "",
+                                           calories: 99,
+                                           protein: 99,
+                                           carbs: 99)
     
-    static let appetizers = [sampleAppetizer, sampleAppetizer, sampleAppetizer, sampleAppetizer]
+    static let sampleAppetizer1 = Appetizer(id: 0002,
+                                            name: "Test Appetizer Two",
+                                            description: "This is the description of my appetizer. It is yummy",
+                                            price: 9.99,
+                                            imageURL: "",
+                                            calories: 99,
+                                            protein: 99,
+                                            carbs: 99)
+    
+    static let sampleAppetizer2 = Appetizer(id: 0003,
+                                            name: "Test Appetizer Three",
+                                            description: "This is the description of my appetizer. It is yummy",
+                                            price: 9.99,
+                                            imageURL: "",
+                                            calories: 99,
+                                            protein: 99,
+                                            carbs: 99)
+    
+    static let appetizers = [sampleAppetizer, sampleAppetizer1, sampleAppetizer2]
 }
