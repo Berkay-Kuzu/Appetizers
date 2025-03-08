@@ -12,7 +12,7 @@ final class Order: ObservableObject {
     @Published var items: [Appetizer] = []
     
     var orderItemsCount: Int {
-        return items.count
+        items.count
     }
     
     var totalPrice: Double {
