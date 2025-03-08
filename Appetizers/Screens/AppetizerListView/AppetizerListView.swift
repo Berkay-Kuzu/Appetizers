@@ -28,9 +28,12 @@ struct AppetizerListView: View {
                 .navigationTitle("🍟 Appetizers")
                 .disabled(appetizerListViewModel.isShowingDetail)
             }
-            .onAppear {
-                //  appetizerListViewModel.getAppetizers() can be written if viewModel init is not written
-                // here is initialized when the view is appear
+//            .onAppear {
+//                  appetizerListViewModel.getAppetizers() can be written if viewModel init is not written
+//                 here is initialized when the view is appear
+//            }
+            .task {
+                appetizerListViewModel.getAppetizers()
             }
             .blur(radius: appetizerListViewModel.isShowingDetail ? 20 : 0)
             

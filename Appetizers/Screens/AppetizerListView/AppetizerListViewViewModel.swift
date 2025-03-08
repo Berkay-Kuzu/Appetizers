@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-final class AppetizerListViewViewModel: ObservableObject {
+@MainActor final class AppetizerListViewViewModel: ObservableObject {
     
     @Published var appetizers: [Appetizer] = []
     @Published var isLoading: Bool = false
@@ -15,23 +15,41 @@ final class AppetizerListViewViewModel: ObservableObject {
     @Published var selectedAppetizer: Appetizer?
     @Published var isShowingDetail = false
     
-    init() {
-        getAppetizers()
-    }
+    //    init() {
+    //        getAppetizers()
+    //    }
+    
+    //    func getAppetizers() {
+    //        self.isLoading = true
+    //        NetworkManager.shared.getAppetizers { result in
+    //            DispatchQueue.main.async {
+    //                self.isLoading = false
+    //                DispatchQueue.main.async {
+    //                    switch result {
+    //                    case .success(let appetizers):
+    //                        self.appetizers = appetizers
+    //                    case .failure(let error):
+    //                        print("appetizers error:\(error)")
+    //                        self.showError(error: error)
+    //                    }
+    //                }
+    //            }
+    //        }
+    //    }
     
     func getAppetizers() {
         self.isLoading = true
-        NetworkManager.shared.getAppetizers { result in
-            DispatchQueue.main.async {
+        Task {
+            do {
+                let resultArray = try await NetworkManager.shared.getApperizerItems()
+                self.appetizers = resultArray
                 self.isLoading = false
-                DispatchQueue.main.async {
-                    switch result {
-                    case .success(let appetizers):
-                        self.appetizers = appetizers
-                    case .failure(let error):
-                        print("appetizers error:\(error)")
-                        self.showError(error: error)
-                    }
+            } catch {
+                self.isLoading = false
+                if let apiError = error as? APError {
+                    self.showError(error: apiError)
+                } else {
+                    alertItem = AlertContext.invalidResponse
                 }
             }
         }

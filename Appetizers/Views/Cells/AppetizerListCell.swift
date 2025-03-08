@@ -24,10 +24,25 @@ struct AppetizerListCell: View {
             //              .frame(width: 120, height: 90)
             //              .cornerRadius(10)
             
-            AppetizerRemoteImage(urlString: appetizer.imageURL)
-                .aspectRatio(contentMode: .fill)
-                .frame(width: 120, height: 90)
-                .cornerRadius(10)
+            AsyncImage(url: URL(string: appetizer.imageURL)) { image in
+                image
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 120, height: 90)
+                    .cornerRadius(10)
+            } placeholder: {
+                Image("food_placeholder")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 120, height: 90)
+                    .cornerRadius(10)
+            }
+            // There is no cache feature in AsyncImage. If you want cache feature, you have to use WebImage or AppetizerRemoteImage !!!!
+            
+//            AppetizerRemoteImage(urlString: appetizer.imageURL)
+//                .aspectRatio(contentMode: .fill)
+//                .frame(width: 120, height: 90)
+//                .cornerRadius(10)
             
             VStack(alignment: .leading, spacing: 5){
                 Text(appetizer.name)
