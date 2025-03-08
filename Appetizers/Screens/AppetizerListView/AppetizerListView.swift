@@ -17,11 +17,14 @@ struct AppetizerListView: View {
             NavigationView {
                 List(appetizerListViewModel.appetizers) { appetizer in
                     AppetizerListCell(appetizer: appetizer)
+                        .listRowSeparator(.hidden)
+//                        .listRowSeparatorTint(.primary)
                         .onTapGesture {
                             self.appetizerListViewModel.selectedAppetizer = appetizer
                             appetizerListViewModel.isShowingDetail = true
                         }
                 }
+                .listStyle(.plain)
                 .navigationTitle("🍟 Appetizers")
                 .disabled(appetizerListViewModel.isShowingDetail)
             }
