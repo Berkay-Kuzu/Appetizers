@@ -9,4 +9,5 @@ import Foundation
 
 enum AppStorageKeys: String {
     case user
+    case order
 }

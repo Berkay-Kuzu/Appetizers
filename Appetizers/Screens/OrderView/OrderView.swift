@@ -37,6 +37,9 @@ struct OrderView: View {
                 }
             }
         }
+        .onAppear {
+            order.retrieveUserOrder()
+        }
     }
 }
 
