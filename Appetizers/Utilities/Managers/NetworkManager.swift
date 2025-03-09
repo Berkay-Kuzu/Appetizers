@@ -20,7 +20,7 @@ final class NetworkManager {
     
     private init() {}
     
-    func getApperizerItems() async throws -> [Appetizer]{
+    func getAppetizerItems() async throws -> [Appetizer]{
         
         guard let url = URL(string: appetizerURL) else {
             throw APError.invalidURL

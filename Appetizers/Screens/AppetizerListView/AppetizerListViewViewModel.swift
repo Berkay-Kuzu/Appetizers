@@ -41,7 +41,7 @@ import SwiftUI
         self.isLoading = true
         Task {
             do {
-                let resultArray = try await NetworkManager.shared.getApperizerItems()
+                let resultArray = try await NetworkManager.shared.getAppetizerItems()
                 self.appetizers = resultArray
                 self.isLoading = false
             } catch {
