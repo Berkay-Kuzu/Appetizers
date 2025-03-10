@@ -44,7 +44,9 @@ struct AppetizerListView: View {
             
             if appetizerListViewModel.isLoading {
                 ProgressView()
-                    .progressViewStyle(.circular)
+                    .progressViewStyle(CircularProgressViewStyle())
+//                    .progressViewStyle(.circular)
+                    .tint(.primary)
                     .scaleEffect(1.5)
             }
         }

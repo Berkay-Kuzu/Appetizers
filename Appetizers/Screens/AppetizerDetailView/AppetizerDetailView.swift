@@ -35,9 +35,9 @@ struct AppetizerDetailView: View {
                     .lineLimit(2)
                     .padding(.all, 5)
                 HStack(spacing: 40) {
-                    NutritionInfo(title: "Calories", value: appetizer.calories)
-                    NutritionInfo(title: "Carbs", value: appetizer.carbs)
-                    NutritionInfo(title: "Protein", value: appetizer.protein)
+                    NutritionInfo(title: "Calories", value: "\(appetizer.calories)")
+                    NutritionInfo(title: "Carbs", value: "\(appetizer.carbs) g")
+                    NutritionInfo(title: "Protein", value: "\(appetizer.protein) g")
                 }
             }
             Spacer()
